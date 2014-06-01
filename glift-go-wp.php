@@ -37,7 +37,8 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit();
 }
 
-$glift_js_version = '0.11.0'; // change this on js update to prevent browsers caching old scripts
+$glift_js_version = '0.11.0'; // change these on js update to prevent browsers caching old scripts
+$glift_jquery_version = '2.1.1'; // glift didn't work with current WP jquery version at the time of writing, so we will add our own
 
 // find absolute plugin url and get current protocol (http or https) to avoid serving mixed content
 $glift_url = plugins_url( '', __FILE__ );
