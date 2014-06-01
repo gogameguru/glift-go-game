@@ -2,7 +2,7 @@
 /*
 Plugin Name: Glift Go Game		
 Version: 0.0.1
-Plugin URI: http://gliftgo.com/
+Plugin URI: http://www.gliftgo.com/
 Description: Integrates the Glift responsive Go library with WordPress. This provides invaluable tools for any WordPress site about the board game Go.
 Author: Go Game Guru
 Author URI: http://gogameguru.com/
