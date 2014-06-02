@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Glift Go Game		
+Plugin Name: Glift Go Game
 Version: 0.0.1
 Plugin URI: http://www.gliftgo.com/
 Description: Integrates the Glift responsive Go library with WordPress. This provides invaluable tools for any WordPress site about the board game Go.
@@ -37,12 +37,12 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit();
 }
 
-$glift_js_version = '0.11.0'; // change these on js update to prevent browsers caching old scripts
-$glift_jquery_version = '2.1.1'; // glift didn't work with current WP jquery version at the time of writing, so we will add our own
+$glift_js_version = '0.11.0'; // change this version number on js upgrade to refresh scripts in browser caches
+$glift_js_deps = array( 'jquery' ); // an array dependencies for glift - WP will try to enqueue them whenever glift.js is enqueued
 
 // find absolute plugin url and get current protocol (http or https) to avoid serving mixed content
 $glift_url = plugins_url( '', __FILE__ );
 
-// find plugin files and load the Glift Go Plugin
+// find plugin files and load the Glift Go Game Plugin
 $glift_path = plugin_dir_path( __FILE__ );
-require $glift_path.'includes/glift-main.php';
+require( $glift_path.'includes/glift-main.php' );
