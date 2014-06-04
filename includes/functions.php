@@ -61,7 +61,7 @@ function glift_objectify_shortcode( $atts, $content, $tag ) {
 	} elseif ( $content ) {
 		// if not, do we have $content? clean it instead
 		$clean_content = sanitize_text_field( $content );
-		$sgf = preg_match( '/^[a-zA-Z0-9;:()\[\]-_]+$/', $clean_content ); #TODO this regex is probably too strict, consider alternative;
+		$sgf = $clean_content );
 	} else {
 		// we don't have enough data, so return nothing
 		return;
