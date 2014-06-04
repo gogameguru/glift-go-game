@@ -1,7 +1,9 @@
 <?php
 
-/* This Glift object (class) )is basically a wrapper for glift.js and mirrors its nomenclature.
- * The main purpose of the object is to structure data for output as JSON */
+/** This Glift object (class) is basically a wrapper for glift.js and uses
+ * the same nomenclature. The main purpose of the object is to structure data
+ * for output in JSON.
+ */
 
 class Glift implements JsonSerializable {
 
@@ -18,13 +20,14 @@ class Glift implements JsonSerializable {
 		$this->_sgf = $sgf;
 	}
 
-	// this function will be accessed by json_encode() and specifies the precise JSON format.
+	// this function will be accessed by json_encode()
 	public function jsonSerialize() {
 
-        $data = ['divId' => $this->divId,
-                'sgf' => $this->_sgf,
-                'display' => $this->_display];
-                #TODO extend to other Glift properties
-        return $data;
-    }
+	$data = ['divId' => $this->divId,
+		'sgf' => $this->_sgf,
+		'display' => $this->_display];
+		#TODO extend to other Glift properties
+
+	return $data;
+	}
 }

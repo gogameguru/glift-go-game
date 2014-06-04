@@ -1,11 +1,11 @@
 <?php
 
-// register the shortcodes for Go data (actual function is in /includes/functions.php if you're looking for it)
+// register the glift shortcode
 add_shortcode( 'glift', 'glift_do_shortcode' );
-add_shortcode( 'sgf', 'glift_do_shortcode' ); // add sgf shortcode for backwards compatibility with old EidoGo for WordPress plugin
 
-// glift_do_shortcode is executed every time the shortcode is found - it cleans up user input and displays Glift
+// glift_do_shortcode is executed every time one of our shortcodes is found
 function glift_do_shortcode( $atts, $content, $tag ) {
+	#TODO(dormerod): add shortcode_atts() defaults/masks
 
 	// make the Glift object
 	$glift_object = glift_objectify_shortcode( $atts, $content, $tag );
