@@ -8,6 +8,8 @@ function glift_mime_types( $mime_types ) {
 
 // registers JavaScript with WordPress
 function glift_register_scripts() {
+	
+	if ( is_admin() ) return;
 
 	global $glift_js_version;
 	global $glift_js_deps;
@@ -30,6 +32,8 @@ function glift_register_scripts() {
 
 function glift_enqueue_scripts() {
 	#TODO(dormerod): only load scripts when they're needed
+	if ( is_admin() ) return;
+
 	wp_enqueue_script( 'jquery' ); // enqueue our new jquery
 	wp_enqueue_script( 'glift' );
 }
@@ -61,7 +65,7 @@ function glift_objectify_shortcode( $atts, $content, $tag ) {
 	} elseif ( $content ) {
 		// if not, do we have $content? clean it instead
 		$clean_content = sanitize_text_field( $content );
-		$sgf = $clean_content );
+		$sgf = $clean_content;
 	} else {
 		// we don't have enough data, so return nothing
 		return;
