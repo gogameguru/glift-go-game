@@ -7,9 +7,9 @@ add_shortcode( 'glift', 'glift_do_shortcode' );
 function glift_do_shortcode( $atts, $content, $tag ) {
 	#TODO(dormerod): add shortcode_atts() defaults/masks
 
-	// make the Glift object
-	$glift_object = glift_objectify_shortcode( $atts, $content, $tag );
-	// if we get an object back, transform it into JSON encoded HTML
-	if ( $glift_object ) $html = glift_to_html( $glift_object );
+	// make Glift object and return as JSON
+	$glift = new Glift();
+	$glift->eat_shortcode( $atts, $content, $tag );
+	$html = $glift->to_html();
 	return $html;
 }

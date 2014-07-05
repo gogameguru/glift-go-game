@@ -1,8 +1,9 @@
 <?php
 
-// add SGF to allowable file extensions for upload
+// add SGF and JSON to allowable file extensions for upload
 function glift_mime_types( $mime_types ) {
 	$mime_types['sgf'] = 'application/x-go-sgf';
+	$mime_types['json'] = 'application/json';
 	return $mime_types;
 }
 
@@ -19,7 +20,7 @@ function glift_register_scripts() {
 	wp_enqueue_script( 'jquery' );
 	$wp_jquery_ver = $GLOBALS['wp_scripts']->registered['jquery']->ver;
 
-	// now deregister native WP jQuery, because it doesn't work with Glift
+	// now deregister native WP jQuery, because it does not work with Glift
 	wp_deregister_script( 'jquery' );
 
 	// now register scripts
@@ -27,66 +28,45 @@ function glift_register_scripts() {
 	"//ajax.googleapis.com/ajax/libs/jquery/$wp_jquery_ver/jquery.min.js";
 	$glift_js_url = $glift_url.'/js/glift.js';
 	wp_register_script( 'jquery', $glift_jquery_url, false, $wp_jquery_ver );
-	wp_register_script( 'glift', $glift_js_url, $glift_js_deps, $glift_js_version );
+	wp_register_script( 
+		'glift', 
+		$glift_js_url, 
+		$glift_js_deps, 
+		$glift_js_version 
+	);
 }
 
 function glift_enqueue_scripts() {
-	#TODO(dormerod): only load scripts when they're needed
+	#TODO(dormerod): only load scripts when needed
+	
+	// don't load scripts in admin dashboard
 	if ( is_admin() ) return;
 
-	wp_enqueue_script( 'jquery' ); // enqueue our new jquery
+	wp_enqueue_script( 'jquery' ); // enqueue our jquery
 	wp_enqueue_script( 'glift' );
 }
 
-// cleans up shortcode inputs and returns a Glift object
-function glift_objectify_shortcode( $atts, $content, $tag ) {
-
-#TODO(dormerod): turn this into a Glift.method and build out properties
-
-	// did our shortcode send any data?
-	if ( $atts ) {
-		// if so then clean it up
-		$clean_atts = array_map( 'sanitize_text_field', $atts );
-		// ignore $content for now
-		#TODO(dormerod): swap around $atts and $content checking
-
-	} elseif ( !$content ) {
-		// if we don't have any data, then return nothing
-		return;
-	} // end of shortcode checks if block
-
-	static $id = 1; // keep track of unique div id within this function
-	$divId = esc_attr( "glift_display$id" );
-	$id++;
-
-	// do we have an sgf url?
-	if ( $clean_atts['sgfurl'] ) {
-		$sgf = esc_url($clean_atts['sgfurl']);
-	} elseif ( $content ) {
-		// if not, do we have $content? clean it instead
-		$clean_content = sanitize_text_field( $content );
-		$sgf = $clean_content;
-	} else {
-		// we don't have enough data, so return nothing
-		return;
-	}
-
-	$glift_object = new Glift( $divId, $sgf );
-
-	return $glift_object;
+// test whether a string is a url, return boolean
+function glift_is_url( $url ) {
+	
+	$result = filter_var( $url, FILTER_VALIDATE_URL ) ? TRUE : FALSE;
+	return $result;
 }
 
-// JSON encodes Glift object and returns it as HTML for glift.js to process
-function glift_to_html ( $glift_object ) {
-	#TODO(dormerod): move some of the style info to somewhere more reusable
+// get the file extension from a url
+function glift_get_filetype( $url ) {
 
-	$divId = esc_attr( $glift_object->divId );
-	$json = json_encode( $glift_object, JSON_PRETTY_PRINT );
-	$html =
-"<div id='$divId' style='height:500px; width:100%; position:relative;'></div>
-&nbsp;
-<script type='text/javascript'>
-gliftWidget = glift.create($json);
-</script>";
-	return $html;
+	$extension = pathinfo( $url, PATHINFO_EXTENSION );
+	$extension = strtolower( $extension );
+	return $extension;
 }
+
+// test whether a string looks like an SGF literal, return boolean
+function glift_is_sgf( $sgf_data ) {
+	
+	#TODO(dormerod): make this SGF format regex less restrictive/more robust
+	$sgf_pattern = '/^\(;GM\[1\]FF\[4\].*\)$/';
+	$result = preg_match( $sgf_pattern, $sgf_data ) ? TRUE : FALSE;
+	return $result;
+}
+
