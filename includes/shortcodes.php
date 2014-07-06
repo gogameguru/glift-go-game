@@ -10,6 +10,6 @@ function glift_do_shortcode( $atts, $content, $tag ) {
 	// make Glift object and return as JSON
 	$glift = new Glift();
 	$glift->eat_shortcode( $atts, $content, $tag );
-	$html = $glift->to_html();
+	$html = $glift->get_html();
 	return $html;
 }

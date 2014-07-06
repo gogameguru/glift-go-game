@@ -7,7 +7,7 @@
 
 // This class isn't actually used yet because of some other plugin changes.
 
-class Sgf implements JsonSerializable, ArrayAccess {
+class Sgf implements ArrayAccess {
 
 	private $container = []; // required to implement ArrayAccess above
 	
@@ -37,23 +37,6 @@ class Sgf implements JsonSerializable, ArrayAccess {
 		$this->icons = $icons;
 		$this->componentsToUse = $componentsToUse;
 		$this->showVariations = $showVariations;
-	}
-
-
-	// this function will be accessed by json_encode()
-	public function jsonSerialize() {
-	
-	$data = [
-		'sgfString' => $this->sgfString, 
-		'url' => $this->url, 
-		'initialPosition' => $this->initialPosition, 
-		'widgetType' => $this->widgetType, 
-		'icons' => $this->icons, 
-		'componentsToUse' => $this->componentsToUse, 
-		'showVariations' => $this->showVariations
-	];
-
-	return $data;
 	}
 
 

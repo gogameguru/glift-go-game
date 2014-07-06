@@ -5,7 +5,7 @@
  * and structure it for output in JSON.
  */
 
-class Glift implements JsonSerializable {
+class Glift {
 
 	protected $divId;
 	protected $sgf;
@@ -23,20 +23,6 @@ class Glift implements JsonSerializable {
 		
 		// add other properties from function parameter
 		$this->add_properties( $properties );
-	}
-
-
-	// required by objects that implement JsonSerializable
-	// this method will be accessed by json_encode()
-	public function jsonSerialize() {
-	
-		// convert this object to an array
-		$glift_data = get_object_vars( $this );
-
-		// escape all array elements for output and drop any null properties
-		$glift_data = glift_mega_map( 'glift_escape', $glift_data, array() );
-
-		return $glift_data;
 	}
 
 
@@ -103,15 +89,29 @@ class Glift implements JsonSerializable {
 	}
 
 
+	// encode this object as JSON and return string with result
+	public function get_json() {
+	
+		// convert this object to an array
+		$glift_data = get_object_vars( $this );
+
+		// escape all array elements for output and drop any null properties
+		$glift_data = glift_mega_map( 'glift_escape', $glift_data, array() );
+
+		$json = json_encode( $glift_data );
+
+		return $json;
+	}
+
+
 	// JSON encodes Glift object and returns it as HTML for glift.js
-	public function to_html() {
+	public function get_html() {
 		#TODO(dormerod): move div style info to somewhere more reusable
 
 		$divId = esc_attr( $this->divId );
-		$json = json_encode( $this, JSON_PRETTY_PRINT );
+		$json = $this->get_json();
 		$style = "height:500px; width:100%; position:relative;";
-		$html =
-				"<div id='$divId' style='$style'></div>
+		$html =	"<div id='$divId' style='$style'></div>
 				&nbsp;
 				<script type='text/javascript'>
 				gliftWidget = glift.create($json);
