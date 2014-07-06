@@ -1,11 +1,13 @@
 <?php
 
 // add SGF and JSON to allowable file extensions for upload
+#TODO(dormerod): document these functions properly using PHPDoc
 function glift_mime_types( $mime_types ) {
 	$mime_types['sgf'] = 'application/x-go-sgf';
 	$mime_types['json'] = 'application/json';
 	return $mime_types;
 }
+
 
 // registers JavaScript with WordPress
 function glift_register_scripts() {
@@ -36,6 +38,7 @@ function glift_register_scripts() {
 	);
 }
 
+
 function glift_enqueue_scripts() {
 	#TODO(dormerod): only load scripts when needed
 	
@@ -46,12 +49,14 @@ function glift_enqueue_scripts() {
 	wp_enqueue_script( 'glift' );
 }
 
+
 // test whether a string is a url, return boolean
 function glift_is_url( $url ) {
 	
 	$result = filter_var( $url, FILTER_VALIDATE_URL ) ? TRUE : FALSE;
 	return $result;
 }
+
 
 // get the file extension from a url
 function glift_get_filetype( $url ) {
@@ -60,6 +65,7 @@ function glift_get_filetype( $url ) {
 	$extension = strtolower( $extension );
 	return $extension;
 }
+
 
 // test whether a string looks like an SGF literal, return boolean
 function glift_is_sgf( $sgf_data ) {
@@ -70,3 +76,67 @@ function glift_is_sgf( $sgf_data ) {
 	return $result;
 }
 
+
+// escape a string and return it for output to browser
+function glift_escape( $input ) {
+	
+	if ( glift_is_url( $input ) ) {
+		$escaped = esc_url( $input );
+	
+	} else {
+		$escaped = esc_js( $input );
+	}
+	return $escaped;
+}
+
+
+// recursively maps a function against arrays and objects
+// returns an array containing the mapped values
+// any object properties will be copied to an array in the process
+// null values are omitted
+function glift_mega_map( $callback, $array, $args ) {
+
+	$new = []; // new array to return results
+	
+	// check if we have a collection that can be accessed as an array
+	if ( is_array( $array ) || $array instanceof ArrayAccess ) {
+		foreach ( $array as $key => $value ) {
+			if ( is_array( $value ) || $value instanceof ArrayAccess ) {
+				$new[$key] = glift_mega_map( $callback, $value, $args );
+						
+			} else {
+				// $value isn't an array, so we need to do some more work
+				if ( !is_array( $args ) || empty( $args ) ) {
+					if ( isset( $value ) ) { 
+						// execute our callback function on the current $value
+                    	$value = array( $value ); // we need an array argument
+						$new[$key] = call_user_func_array( $callback, $value ); 
+					}
+
+				} elseif ( isset( $value ) ) {
+					// prepend the current value to args and call function
+					$args =	array_unshift( $args, $value );
+					$new[$key] = call_user_func_array( $callback, $args ); 
+				}
+				// if $value and $args are empty, then we'll omit this element
+			}
+		}
+	
+	// if we don't have a collection, run our function directly on $array
+	// the logic is the same as above except we assign to $new directly
+	} else {
+		if ( !is_array( $args ) || empty( $args ) ) {
+        	if ( isset( $array ) ) { 
+		    	$new = call_user_func_array( $callback, $array ); 
+			}
+		                                                                 
+		} elseif ( isset( $array ) ) {
+			// prepend the current value to args and call function
+			$args =	array_unshift( $args, $array );
+			$new = call_user_func_array( $callback, $args ); 
+		}
+		// if $array and $args are empty, then we this variable
+	}
+
+	return $new;
+}
