@@ -140,3 +140,32 @@ function glift_mega_map( $callback, $array, $args ) {
 
 	return $new;
 }
+
+
+/** Checks the user's browser to see if they can support glift.js
+ * Blacklist IE 8 and earlier (we only check 4-8 because 1-3 are really old).
+ * If someone is using IE 1, they have bigger problems than Glift not working.
+ * Blacklist Android 2.X and earlier.
+ *
+ * Returns TRUE if browser is ok, FALSE if not.
+ */
+function glift_browser_ok() {
+
+	// Blacklist array containing regex patterns for browsers we don't like :)
+	$blacklist = array( '/msie [4-8]/i', '/android [1-2]/i' );
+	
+	// Note: This regex will have to be updated when Android reaches version 10,
+	// or when Internet Explorer reaches version 40.
+	// The simplest solution will be to just change it to '/android 2/i' later.	
+	// It could also be changed to something more robust in the meantime.
+
+	$user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+	foreach ( $blacklist as $browser ) {
+		
+		// return false if we find any blacklisted browsers
+		if ( preg_match( $browser, $user_agent ) ) return FALSE;
+	}
+
+	return TRUE; // we didn't find a blacklisted browser, so return true
+}

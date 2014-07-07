@@ -10,6 +10,7 @@ class Glift {
 	protected $divId;
 	protected $sgf;
 	protected $sgfCollection;
+	protected $noLink;
 	protected $allowWrapAround;
 	protected $sgfDefaults;
 	protected $display;
@@ -102,6 +103,7 @@ class Glift {
 		#TODO(dormerod): move div style info to somewhere more reusable
 
 		$divId = esc_attr( $this->divId );
+		$download = glift_is_url( $this->sgf ) ? esc_url( $this->sgf ) : FALSE;
 		$json = $this->get_json();
 		$style = "height:500px; width:100%; position:relative;";
 		$html =	
@@ -109,7 +111,16 @@ class Glift {
 			"\n\r<script type='text/javascript'>".
 			"gliftWidget = glift.create($json);".
 			"</script>".
-			"\n\r&nbsp;";
+			"\n\r<noscript>Our Go game diagrams require JavaScript to work ".
+			"properly. Please enable JavaScript if you want to view them. ".
+			"</noscript>";
+
+			// add a hyperlink to download the SGF if appropriate
+			if ( $download && !$this->noLink ) $html .= "<div align='right'>".
+			"<a href='$download'>Download SGF File (Go Game Record)</a></div>";
+			
+			$html .= "\n\r&nbsp;";
+
 		return $html;
 	}
 
@@ -144,6 +155,11 @@ class Glift {
 		
 				// explicitly grab any remaining shortcode attributes
 				
+				/* noLink * - this property is only used by this plugin */
+				$properties['noLink'] = 
+				( ( array_key_exists( 'nolink', $clean_atts ) ) &&
+				( FALSE != $clean_atts['nolink'] ) ) ? TRUE : NULL;
+
 				/* allowWraparound */
 				$properties['allowWrapAround'] = 
 				( ( array_key_exists( 'allowwraparound', $clean_atts ) ) &&
