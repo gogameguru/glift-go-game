@@ -112,15 +112,14 @@ class Glift {
 			"gliftWidget = glift.create($json);".
 			"</script>".
 			"\n\r<noscript>Our Go game diagrams require JavaScript to work ".
-			"properly. Please enable JavaScript if you want to view them. ".
-			"</noscript>";
+			"properly. Please enable JavaScript if you want to view them.".
+			"</noscript>\n\r&nbsp;";
 
 			// add a hyperlink to download the SGF if appropriate
-			if ( $download && !$this->noLink ) $html .= "<div align='right'>".
-			"<a href='$download'>Download SGF File (Go Game Record)</a></div>";
+			if ( $download && !$this->noLink ) $html .= 
+			"<div align='center'><a href='$download'>Download SGF File ".
+			"(Go Game Record)</a></div>\n\r&nbsp;";
 			
-			$html .= "\n\r&nbsp;";
-
 		return $html;
 	}
 
