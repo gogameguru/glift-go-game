@@ -15,7 +15,7 @@ class Glift {
 	protected $display;
 	/* ADD ANY NEW GLIFT PROPERTIES HERE (and in glift_eat_shortcode below)*/
 
-	public function __construct( $properties = array( 'sgf' => '' ) ) {
+	public function __construct( $properties = array( 'sgf' => NULL ) ) {
 
 		static $id = 1; // keep track of unique div id 
 		if ( is_int( $id ) ) $this->divId = ( "glift_display$id" );
@@ -27,7 +27,7 @@ class Glift {
 
 
 	// Add properties to this object
-	private function add_properties( $properties = array( 'sgf' => '' ) ) {
+	private function add_properties( $properties = array( 'sgf' => NULL ) ) {
 		
 		// Validate SGF data. If we have no data, set to zero length string.
 		if ( array_key_exists( 'sgf', $properties ) ) {
@@ -41,13 +41,10 @@ class Glift {
 			} elseif ( is_array ( $properties['sgf'] ) ) {		
 				$this->sgfCollection = $properties['sgf'];
 			
-			} else {
-				// we have data, but it's invalid, set sgf set to ZLS
-				$this->sgf = '';
 			} // end of sgf if block
 
 		// if we don't have $sgf, try $sgfCollection
-		} elseif ( $array_key_exists( 'sgfCollection', $properties ) ) {
+		} elseif ( array_key_exists( 'sgfCollection', $properties ) ) {
 
 			if ( glift_is_url( $properties['sgfCollection'] ) ) {
 			$this->assign_url( $properties['sgfCollection'] );
@@ -55,14 +52,10 @@ class Glift {
 			} elseif ( is_array( $properties['sgfCollection'] ) ) {		
 				$this->sgfCollection = $properties['sgfCollection'];
 			
-			} else {
-				$this->sgf = '';
-			} // end of sgfCollection if block
+			} // end of sgfCollection elseif block
 
-		} else {
-			// we have no sgf data, so set sgf to zero length string
-			$this->sgf = '';
-		
+		// we have no sgf data, so leave sgf as NULL
+
 		} // end of SGF data if block
 
 		// we've finished with sgf and sgfCollection, so drop them from array
@@ -111,11 +104,12 @@ class Glift {
 		$divId = esc_attr( $this->divId );
 		$json = $this->get_json();
 		$style = "height:500px; width:100%; position:relative;";
-		$html =	"<div id='$divId' style='$style'></div>
-				&nbsp;
-				<script type='text/javascript'>
-				gliftWidget = glift.create($json);
-				</script>";
+		$html =	
+			"<div id='$divId' style='$style'></div>".
+			"\n\r<script type='text/javascript'>".
+			"gliftWidget = glift.create($json);".
+			"</script>".
+			"\n\r&nbsp;";
 		return $html;
 	}
 
@@ -144,16 +138,16 @@ class Glift {
 					$properties['sgf'] = $clean_content;
 
 				} else {
-					// we don't have any sgf data, so return nothing
-					return;
+					// we don't have any data, so return false
+					return FALSE;
 				}
 		
 				// explicitly grab any remaining shortcode attributes
 				
 				/* allowWraparound */
 				$properties['allowWrapAround'] = 
-				array_key_exists( 'allowwraparound', $clean_atts ) ?
-				$clean_atts['allowwraparound'] : NULL;
+				( ( array_key_exists( 'allowwraparound', $clean_atts ) ) &&
+				( FALSE != $clean_atts['allowwraparound'] ) ) ? TRUE : NULL;
 				
 				/* sgfDefaults */
 				if ( array_key_exists( 'widgettype', $clean_atts ) )
@@ -178,13 +172,13 @@ class Glift {
 			$properties['sgf'] = $clean_content;
 
 		} else {
-			// we don't seem to have any sgf data, so sgf = ZLS
-			$properties['sgf'] = '';
+			// we don't have any data, so return false
+			return FALSE;
 		}
 
 		// and finally, add the shortcode attributes as properties
 		$this->add_properties( $properties );
 
-		return;
+		return TRUE;
 	}
 }

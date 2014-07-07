@@ -58,7 +58,7 @@ function glift_is_url( $url ) {
 }
 
 
-// get the file extension from a url
+// get the lowercase file extension from a url
 function glift_get_filetype( $url ) {
 
 	$extension = pathinfo( $url, PATHINFO_EXTENSION );
@@ -96,7 +96,7 @@ function glift_escape( $input ) {
 // null values are omitted
 function glift_mega_map( $callback, $array, $args ) {
 
-	$new = []; // new array to return results
+	$new = array(); // new array to return results
 	
 	// check if we have a collection that can be accessed as an array
 	if ( is_array( $array ) || $array instanceof ArrayAccess ) {
@@ -114,7 +114,7 @@ function glift_mega_map( $callback, $array, $args ) {
 					}
 
 				} elseif ( isset( $value ) ) {
-					// prepend the current value to args and call function
+					// prepend the current $value to $args and call function
 					$args =	array_unshift( $args, $value );
 					$new[$key] = call_user_func_array( $callback, $args ); 
 				}
@@ -131,11 +131,11 @@ function glift_mega_map( $callback, $array, $args ) {
 			}
 		                                                                 
 		} elseif ( isset( $array ) ) {
-			// prepend the current value to args and call function
+			// prepend the current $array to $args and call function
 			$args =	array_unshift( $args, $array );
 			$new = call_user_func_array( $callback, $args ); 
 		}
-		// if $array and $args are empty, then we this variable
+		// if $array and $args are empty, then we omit this variable
 	}
 
 	return $new;
