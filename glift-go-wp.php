@@ -38,7 +38,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit();
 }
 
-$glift_js_version = '0.14.2'; // change this version number on js upgrade
+$glift_js_version = '0.14.3'; // change this version number on js upgrade
 $glift_js_deps = array( 'jquery' ); // an array of glift.js dependencies
 
 // find absolute plugin URL (this also returns current protocol)
