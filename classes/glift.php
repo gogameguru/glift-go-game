@@ -92,6 +92,9 @@ class Glift {
 		// escape all array elements for output and drop any null properties
 		$glift_data = glift_mega_map( 'glift_escape', $glift_data, array() );
 
+		// remove noLink property because it's not used by Glift
+		unset( $glift_data['noLink'] );
+
 		$json = json_encode( $glift_data );
 
 		return $json;
