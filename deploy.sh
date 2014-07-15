@@ -1,9 +1,10 @@
 #! /bin/bash
-# Based on scripts by Dean Clatworthy, Brent Shepherd and Patrick Rauland
+# Based on scripts by Dean Clatworthy, Brent Shepherd and Patrick Rauland.
 # https://github.com/BFTrick/jotform-integration/blob/master/deploy.sh
 
-# This script lives in the git repo and is used to deploy updates to BOTH git and svn
-# Use 'bash deploy.sh' instead of 'git push' when updating to the WordPress plugin repo
+# This script lives in the git repo and is used to deploy updates to BOTH git 
+# and svn at the same time. Use 'bash deploy.sh' instead of 'git push' when 
+# updating to the WordPress plugin repo.
 
 # main config
 PLUGINSLUG="glift-go-game"
@@ -33,9 +34,9 @@ echo "readme version: $NEWVERSION1"
 NEWVERSION2=`grep "^Version" $GITPATH/$MAINFILE | awk -F' ' '{print $2}'`
 echo "$MAINFILE version: $NEWVERSION2"
 
-if [ "$NEWVERSION1" != "$NEWVERSION2" ]; then echo "Versions don't match. Exiting...."; exit 1; fi
+if [ "$NEWVERSION1" != "$NEWVERSION2" ]; then echo "Versions don't match. Exiting..."; exit 1; fi
 
-echo "Versions match in readme.txt and PHP file. Let's proceed..."
+echo "Versions match in readme.txt and $MAINFILE. Let's proceed..."
 
 cd $GITPATH
 echo -e "Enter a commit message for this new version: \c"
@@ -43,7 +44,7 @@ read COMMITMSG
 git commit -am "$COMMITMSG"
 
 echo "Tagging new version in git"
-git tag -a "$NEWVERSION1" -m "Tagging version $NEWVERSION1"
+git tag -a "$NEWVERSION1" -m "$COMMITMSG"
 
 echo "Pushing latest commit to origin, with tags"
 git push origin master
@@ -62,23 +63,12 @@ README.md
 .git
 .gitignore" "$SVNPATH/trunk/"
 
-echo "Moving assets-wp-repo"
-mkdir $SVNPATH/assets/
-mv $SVNPATH/trunk/assets-wp-repo/* $SVNPATH/assets/
-svn add $SVNPATH/assets/
-svn delete $SVNPATH/trunk/assets-wp-repo
-
-
 echo "Changing directory to SVN"
 cd $SVNPATH/trunk/
 # Add all new files that are not set to be ignored
 svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
 echo "committing to trunk"
 svn commit --username=$SVNUSER -m "$COMMITMSG"
-
-echo "Updating WP plugin repo assets & committing"
-cd $SVNPATH/assets/
-svn commit --username=$SVNUSER -m "Updating wp-repo-assets"
 
 echo "Creating new SVN tag & committing it"
 cd $SVNPATH
