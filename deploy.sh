@@ -16,7 +16,7 @@ GITPATH="$CURRENTDIR/" # this file should be in the base of your git repository
 
 # svn config
 SVNPATH="/tmp/$PLUGINSLUG" # path to a temp SVN repo. No trailing slash required and don't add trunk.
-SVNURL="http://plugins.svn.wordpress.org/glift-go-game/" # Remote SVN repo on wordpress.org, with no trailing slash
+SVNURL="http://plugins.svn.wordpress.org/glift-go-game" # Remote SVN repo on wordpress.org, with no trailing slash
 SVNUSER="gogameguru" # your svn username
 
 
@@ -51,13 +51,13 @@ git push origin master
 git push origin master --tags
 
 echo 
-echo "Creating local copy of SVN repo ..."
+echo "Creating local copy of SVN repo..."
 svn co $SVNURL $SVNPATH
 
 echo "Exporting the HEAD of master from git to the trunk of SVN"
 git checkout-index -a -f --prefix=$SVNPATH/trunk/
 
-echo "Ignoring github specific & deployment script"
+echo "Ignoring github specific files & deployment script"
 svn propset svn:ignore "deploy.sh
 README.md
 .git
@@ -67,14 +67,14 @@ echo "Changing directory to SVN"
 cd $SVNPATH/trunk/
 # Add all new files that are not set to be ignored
 svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
-echo "committing to trunk"
+echo "Committing to trunk"
 svn commit --username=$SVNUSER -m "$COMMITMSG"
 
 echo "Creating new SVN tag & committing it"
 cd $SVNPATH
 svn copy trunk/ tags/$NEWVERSION1/
 cd $SVNPATH/tags/$NEWVERSION1
-svn commit --username=$SVNUSER -m "Tagging version $NEWVERSION1"
+svn commit --username=$SVNUSER -m "$COMMITMSG"
 
 echo "Removing temporary directory $SVNPATH"
 rm -fr $SVNPATH/
