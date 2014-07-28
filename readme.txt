@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 3.9.1
-Stable tag: 0.2.3
+Stable tag: 0.2.4
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -49,6 +49,9 @@ Yes, visit our [Glift page](http://gogameguru.com/glift/ "Glift Go Game WordPres
 Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more information and sample code.
 
 == Changelog ==
+
+= 0.2.4 =
+* Fix - don't cache browser update message when WordPress uses page caching
 
 = 0.2.3 =
 * Cleanup

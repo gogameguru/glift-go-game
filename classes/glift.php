@@ -29,7 +29,7 @@ class Glift {
 
 	// Add properties to this object
 	private function add_properties( $properties = array( 'sgf' => NULL ) ) {
-		
+	
 		// Validate SGF data. If we have no data, set to zero length string.
 		if ( array_key_exists( 'sgf', $properties ) ) {
 			
@@ -92,7 +92,7 @@ class Glift {
 		// escape all array elements for output and drop any null properties
 		$glift_data = glift_mega_map( 'glift_escape', $glift_data, array() );
 
-		// remove noLink property because it's not used by Glift
+		// remove properties that are only used internally (by this plugin)
 		unset( $glift_data['noLink'] );
 
 		$json = json_encode( $glift_data );
@@ -135,12 +135,13 @@ class Glift {
 			// if so then clean it up
 			$clean_atts = array_map( 'sanitize_text_field', $atts );
 
-				// imma find me some sgf data! (O_o)
+				// find some sgf data
 				if ( array_key_exists( 'sgf', $clean_atts ) ) {
 					$properties['sgf'] = $clean_atts['sgf'];
 				
 				// no sgf data so far, do we have an sgfCollection then?
-				} elseif ( array_key_exists( 'sgfcollection', $clean_atts ) ) {
+				} elseif ( array_key_exists( 'sgfcollection', $clean_atts ) ) 
+				{
 					$properties['sgfCollection'] = $clean_atts['sgfcollection'];
 				
 				// still no sgf data, so do we have $content?
@@ -161,7 +162,7 @@ class Glift {
 				$properties['noLink'] = 
 				( ( array_key_exists( 'nolink', $clean_atts ) ) &&
 				( FALSE != $clean_atts['nolink'] ) ) ? TRUE : NULL;
-
+				
 				/* allowWraparound */
 				$properties['allowWrapAround'] = 
 				( ( array_key_exists( 'allowwraparound', $clean_atts ) ) &&
@@ -173,12 +174,23 @@ class Glift {
 				$properties['sgfDefaults'] = isset( $sgfDefaults ) ?
 				$sgfDefaults : NULL;
 
-				/* display */
-				if ( array_key_exists( 'theme', $clean_atts ) )
-				$display['theme'] = $clean_atts['theme'];
-				if ( array_key_exists( 'goboardbackground', $clean_atts ) )
-				$display['goBoardBackground'] = 
-				$clean_atts['goboardbackground'];
+				/* display * - use default settings from if not specified */
+				if ( array_key_exists( 'theme', $clean_atts ) ) {
+					$display['theme'] = $clean_atts['theme'];
+				} elseif( defined( 'THEME' ) ) {
+					$display['theme'] = THEME;
+				}
+				
+				if ( array_key_exists( 'goboardbackground', $clean_atts ) ) {
+					$display['goBoardBackground'] = 
+					$clean_atts['goboardbackground'];
+				} elseif ( defined( 'THEME' ) ) {
+					$display['goBoardBackground'] = GOBOARDBACKGROUND;
+				}
+			/*	array_key_exists( 'nodefaults', $clean_atts )*/
+
+
+				// if we have any display properties then save them
 				$properties['display'] = isset( $display ) ? $display : NULL;
 
 				/* ADD ANY NEW GLIFT PROPERTIES HERE */

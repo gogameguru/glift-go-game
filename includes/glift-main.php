@@ -4,6 +4,11 @@ require( $glift_path.'classes/glift.php' );
 require( 'functions.php' );
 include( 'shortcodes.php' );
 
+// add [sgf] compatibility if EidoGo plugin isn't installed
+$eidogo=$glift_path.'modules/eidogo-compatible.php';
+if ( !function_exists( 'WpEidoGoPlugin' ) && file_exists( $eidogo ) ) 
+include( $eidogo );
+
 #TODO(dormerod): plugin activation routine and default configuration
 #TODO(dormerod): settings page for WP admins
 
