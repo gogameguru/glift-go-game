@@ -79,5 +79,5 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 == Upgrade Notice ==
 
 = 0.3.0 =
-Glift now supports for [sgf] shortcodes (e.g. to upgrade from the EidoGo plugin).
+Glift now supports [sgf] shortcodes (e.g. to upgrade from the EidoGo plugin).
 
