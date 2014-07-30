@@ -59,7 +59,8 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 == Changelog ==
 
 = 0.3.0 =
-* Feature - support EidoGo [sgf] shortcode when EidoGo plugin isn't installed 
+* Feature - support EidoGo [sgf] shortcode when EidoGo plugin isn't installed
+* Feature - Upgrade to Glift 0.15.0 - Glift now has support for tooltips
 * Feature - basic support for default settings (see glift-config-sample.php)
 * Feature - use [glift noDefaults="true" ...] to ignore default settings
 * Fix - don't cache upgrade browser message when WordPress uses page caching
