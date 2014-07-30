@@ -1,5 +1,9 @@
 <?php
 
+/** This file provides backwards compatibility with the [sgf] shortcode
+ * which was used by the old EidoGo for WordPress plugin.
+ */
+
 add_shortcode( 'sgf', 'eidogo_do_shortcode' );
 
 // sanitize, explicitly validate and arrange shortcode data
@@ -12,7 +16,7 @@ function eidogo_do_shortcode( $atts, $content, $tag ) {
 		$clean_atts = array_map( 'sanitize_text_field', $atts );
 
 		// look for sgf data
-		if ( array_key_exists( 'sgfurl', $clean_atts ) ) {
+		if ( isset( $clean_atts['sgfurl'] ) ) {
 			$properties['sgf'] = $clean_atts['sgfurl'];
 			
 		// no sgfurl, so do we have $content?
@@ -26,7 +30,7 @@ function eidogo_do_shortcode( $atts, $content, $tag ) {
 		}
 	
 		/* sgfDefaults */
-		if ( array_key_exists ( 'theme', $clean_atts ) && 
+		if ( isset( $clean_atts['theme'] ) && 
 		'problem' == $clean_atts['theme'] ) 
 		$properties['sgfDefaults'] = 
 		array( 'widgetType' => 'STANDARD_PROBLEM' );

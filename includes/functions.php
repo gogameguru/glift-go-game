@@ -12,29 +12,25 @@ function glift_mime_types( $mime_types ) {
 // registers JavaScript with WordPress
 function glift_register_scripts() {
 	
-	if ( is_admin() ) return;
-
-	global $glift_js_version;
-	global $glift_js_deps;
-	global $glift_url;
+	if ( is_admin() ) return; // don't load scripts in admin dashboard
 
 	// get current WordPress jQuery version so we know which Library to load
 	wp_enqueue_script( 'jquery' );
 	$wp_jquery_ver = $GLOBALS['wp_scripts']->registered['jquery']->ver;
 
-	// now deregister native WP jQuery, because it does not work with Glift
+	// now deregister native WP jQuery, because it doesn't work with Glift
 	wp_deregister_script( 'jquery' );
 
 	// now register scripts
 	$glift_jquery_url =
 	"//ajax.googleapis.com/ajax/libs/jquery/$wp_jquery_ver/jquery.min.js";
-	$glift_js_url = $glift_url.'/js/glift.js';
-	wp_register_script( 'jquery', $glift_jquery_url, false, $wp_jquery_ver );
+	$glift_js_url = GLIFT_URL.'/js/glift.js';
+	wp_register_script( 'jquery', $glift_jquery_url, FALSE, $wp_jquery_ver );
 	wp_register_script( 
 		'glift', 
 		$glift_js_url, 
-		$glift_js_deps, 
-		$glift_js_version 
+		array( 'jquery' ),
+		GLIFT_JS_VERSION 
 	);
 }
 
@@ -42,7 +38,6 @@ function glift_register_scripts() {
 function glift_enqueue_scripts() {
 	#TODO(dormerod): only load scripts when needed
 	
-	// don't load scripts in admin dashboard
 	if ( is_admin() ) return;
 
 	wp_enqueue_script( 'jquery' ); // enqueue our jquery
@@ -109,8 +104,7 @@ function glift_mega_map( $callback, $array, $args ) {
 				if ( !is_array( $args ) || empty( $args ) ) {
 					if ( isset( $value ) ) { 
 						// execute our callback function on the current $value
-                    	$value = array( $value ); // we need an array argument
-						$new[$key] = call_user_func_array( $callback, $value ); 
+						$new[$key] = call_user_func( $callback, $value ); 
 					}
 
 				} elseif ( isset( $value ) ) {
@@ -127,7 +121,7 @@ function glift_mega_map( $callback, $array, $args ) {
 	} else {
 		if ( !is_array( $args ) || empty( $args ) ) {
         	if ( isset( $array ) ) { 
-		    	$new = call_user_func_array( $callback, $array ); 
+				$new = call_user_func( $callback, $array ); 
 			}
 		                                                                 
 		} elseif ( isset( $array ) ) {

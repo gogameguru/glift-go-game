@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 3.9.1
-Stable tag: 0.2.4
+Stable tag: 0.3.0
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -44,17 +44,30 @@ You can embed an SGF file which you've uploaded to the WordPress media library b
 
 Yes, visit our [Glift page](http://gogameguru.com/glift/ "Glift Go Game WordPress Plugin") for more advanced examples.
 
+= Is this plugin backwards compatible with the EidoGo for WordPress plugin? =
+
+Yes, if you previously used EidoGo for WordPress, you have two options:
+
+1. You can keep running EidoGo for WordPress and run Glift (this plugin) at the same time, if you want to. Glift won't interfere with the [sgf] shortcodes and will still allow EidoGo to load them.
+
+2. If you want to remove EidoGo for WordPress and completely replace it with Glift, this plugin will detect that EidoGo isn't installed and will load the [sgf] shortcodes using Glift instead.
+
 = Can I use Glift if I don't have a WordPress blog =
 
 Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more information and sample code.
 
 == Changelog ==
 
-= 0.2.4 =
-* Fix - don't cache browser update message when WordPress uses page caching
+= 0.3.0 =
+* Feature - support EidoGo [sgf] shortcode when EidoGo plugin isn't installed 
+* Feature - basic support for default settings (see glift-config-sample.php)
+* Feature - use [glift noDefaults="true" ...] to ignore default settings
+* Fix - don't cache upgrade browser message when WordPress uses page caching
+* Fix - other minor bug fixes
+* Tweak - performance improvements and code tidy up.
 
 = 0.2.3 =
-* Cleanup
+* Cleanup.
 
 = 0.2.2 =
 * Minor bug fixes, remove noLink property from output.
@@ -64,6 +77,6 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Upgrade Notice ==
 
-= 0.2.1 =
-This is the first stable version.
+= 0.3.0 =
+Glift now supports for [sgf] shortcodes (e.g. to upgrade from the EidoGo plugin).
 
