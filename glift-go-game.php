@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Glift Go Game
-Version: 0.3.0
+Version: 0.3.1
 Plugin URI: http://gogameguru.com/glift/
 Description: Bring the board game Go (围棋 weiqi, 囲碁 igo or 바둑 baduk) to your WordPress site. Integrates the Glift JavaScript Go library with WordPress.
 Author: Go Game Guru
@@ -50,3 +50,4 @@ require( GLIFT_PATH.'includes/glift-main.php' );
 // load the config file, if there is one
 $glift_config = GLIFT_PATH.'glift-config.php';
 if ( file_exists( $glift_config ) ) include( $glift_config );
+
