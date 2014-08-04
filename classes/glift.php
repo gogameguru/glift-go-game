@@ -41,7 +41,7 @@ class Glift {
 				$this->sgf = ( $properties['sgf'] );
 				
 			} elseif ( is_array( $properties['sgf'] ) || 
-			$properties['sgf'] instanceof ArrayAccess )	
+			$properties['sgf'] instanceof ArrayAccess )	{
 			$this->sgfCollection = $properties['sgf'];
 			
 			} // end of sgf if block
@@ -53,7 +53,7 @@ class Glift {
 			$this->assign_url( $properties['sgfCollection'] );
 
 			} elseif ( is_array( $properties['sgfCollection'] ) || 
-			$properties['sgfCollection'] instanceof ArrayAccess )
+			$properties['sgfCollection'] instanceof ArrayAccess ) {
 			$this->sgfCollection = $properties['sgfCollection'];
 			
 			} // end of sgfCollection elseif block
