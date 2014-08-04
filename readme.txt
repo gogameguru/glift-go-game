@@ -58,6 +58,9 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Changelog ==
 
+= 0.3.2 =
+* Feature - Upgrade Glift 0.15.4. Upgraded buttons for problems and games.
+
 = 0.3.1 =
 * Feature - support EidoGo [sgf] shortcode when EidoGo plugin isn't installed
 * Feature - Upgrade to Glift 0.15.0 - Glift now has support for tooltips
