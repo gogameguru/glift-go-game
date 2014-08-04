@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 3.9.1
-Stable tag: 0.3.1
+Stable tag: 0.3.2
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -59,7 +59,7 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 == Changelog ==
 
 = 0.3.2 =
-* Feature - Upgrade Glift 0.15.4. Upgraded buttons for problems and games.
+* Feature - Upgrade to Glift 0.15.4. Improved buttons for problems and games.
 
 = 0.3.1 =
 * Feature - support EidoGo [sgf] shortcode when EidoGo plugin isn't installed
