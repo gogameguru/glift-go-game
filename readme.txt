@@ -59,9 +59,9 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 == Changelog ==
 
 = 0.3.3 =
-* Feature - Upgrade to Glift 0.16.0 -- Adds support for go board coordinate
-  labels, zoom disabling for mobile, and changes slightly how problems are
-  calculated.
+* Feature - Upgrade to Glift 0.17.0 -- Adds support for go board coordinate
+  labels, zoom disabling for mobile, changes slightly how problems are
+  calculated, removes dependency on jQuery.
 
 = 0.3.2 =
 * Feature - Upgrade to Glift 0.15.4. Improved buttons for problems and games.
