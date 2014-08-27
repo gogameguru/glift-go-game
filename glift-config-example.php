@@ -9,14 +9,20 @@
 
 
 // set the default theme
-define( 'GLIFT_THEME', 'DEPTH' );
+define('GLIFT_THEME', 'DEPTH');
 
 // set the default goBoardBackground (change to an image URL on your website)
-define( 'GO_BOARD_BACKGROUND', 'http://gogameguru.com/i/glift/purty_wood.jpg' );
+define('GO_BOARD_BACKGROUND', 'https://gogameguru.com/i/glift/purty_wood.jpg');
+
+// coordinates are enabled by default, uncomment the line below to disable them
+//define('GLIFT_COORDS', FALSE);
+
+// disable zoom for mobile by default - this prevents accidental zooming
+define('GLIFT_DISABLE_ZOOM', TRUE);
 
 // set the message which is shown to people who don't have JavaScript enabled
-define( 'GLIFT_NOSCRIPT', 'Please enable JavaScript to view this game.' );
+define('GLIFT_NOSCRIPT', 'Please enable JavaScript to view this game.');
 
 // set the text for the download SGF hyperlink
-define( 'GLIFT_ANCHOR_TEXT', 'Download SGF' );
+define('GLIFT_ANCHOR_TEXT', 'Download SGF');
 

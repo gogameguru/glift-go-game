@@ -14,24 +14,9 @@ function glift_register_scripts() {
 	
 	if ( is_admin() ) return; // don't load scripts in admin dashboard
 
-	// get current WordPress jQuery version so we know which Library to load
-	wp_enqueue_script( 'jquery' );
-	$wp_jquery_ver = $GLOBALS['wp_scripts']->registered['jquery']->ver;
-
-	// now deregister native WP jQuery, because it doesn't work with Glift
-	wp_deregister_script( 'jquery' );
-
-	// now register scripts
-	$glift_jquery_url =
-	"//ajax.googleapis.com/ajax/libs/jquery/$wp_jquery_ver/jquery.min.js";
+	// register scripts
 	$glift_js_url = GLIFT_URL.'/js/glift.js';
-	wp_register_script( 'jquery', $glift_jquery_url, FALSE, $wp_jquery_ver );
-	wp_register_script( 
-		'glift', 
-		$glift_js_url, 
-		array( 'jquery' ),
-		GLIFT_JS_VERSION 
-	);
+	wp_register_script( 'glift', $glift_js_url, array(), GLIFT_JS_VERSION );
 }
 
 
@@ -40,7 +25,6 @@ function glift_enqueue_scripts() {
 	
 	if ( is_admin() ) return;
 
-	wp_enqueue_script( 'jquery' ); // enqueue our jquery
 	wp_enqueue_script( 'glift' );
 }
 

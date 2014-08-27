@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 3.9.1
-Stable tag: 0.3.2
+Stable tag: 0.3.3
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -62,6 +62,8 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 * Feature - Upgrade to Glift 0.17.1 -- Adds support for go board coordinate
   labels, zoom disabling for mobile, changes slightly how problems are
   calculated, removes dependency on jQuery.
+* Feature - Added plugin support for new board coordinates (default on) and zoom disable options
+* Fix - Removed code that loads jQuery, because it's not needed for this plugin anymore
 
 = 0.3.2 =
 * Feature - Upgrade to Glift 0.15.4. Improved buttons for problems and games.
@@ -86,6 +88,5 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Upgrade Notice ==
 
-= 0.3.1 =
-Glift now supports [sgf] shortcodes (e.g. to upgrade from the EidoGo plugin), tooltips and very basic default settings. More coming soon.
-
+= 0.3.3 =
+Glift now displays coordinates by default and has options for disabling zoom for mobile browsers.

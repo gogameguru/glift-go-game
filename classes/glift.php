@@ -79,6 +79,23 @@ class Glift {
 			if ( defined( 'GO_BOARD_BACKGROUND' ) && 
 			!isset( $this->display['goBoardBackground'] ) )
 			$this->display['goBoardBackground'] = GO_BOARD_BACKGROUND;
+			
+			// show coordinates by default, because WP usually has comments
+			if ( !isset( $this->display['drawBoardCoords'] ) ) {
+				if ( defined( 'GLIFT_COORDS' ) && FALSE == GLIFT_COORDS ) {
+					// do nothing
+				} else {
+					$this->display['drawBoardCoords'] = TRUE;
+				}
+			}
+
+			// don't change zoom by default because auto-disable is overplay
+			if ( !isset( $this->display['disableZoomForMobile'] ) ) {
+				if ( defined( 'GLIFT_DISABLE_ZOOM' ) && 
+				TRUE == GLIFT_DISABLE_ZOOM ) {
+					$this->display['disableZoomForMobile'] = TRUE;
+				} 
+			}
 		}
 	}
 
@@ -135,7 +152,7 @@ class Glift {
 		
 		// create the HTML snippet to load Glift
 		$html =	
-			"<div id='$divId' style='$style'></div>".
+			"\n\r<div id='$divId' style='$style'></div>".
 			"\n\r<script type='text/javascript'>".
 			"gliftWidget = glift.create($json);</script>\n\r<p>&nbsp;</p>\n\r".
 			"<div align ='center'><noscript>$noscript</noscript> ";
@@ -145,7 +162,7 @@ class Glift {
 			$html .= "<a href='$download'>$anchor</a>";
 
 			// close the <div> tag and add some white space
-			$html .= "</div>\n\r<p>&nbsp;</p>\n\r";
+			$html .= "</div>\n\r<p>&nbsp;</p>";
 			
 		return $html;
 	}
@@ -210,6 +227,14 @@ class Glift {
 				if ( isset( $clean_atts['goboardbackground'] ) ) 
 					$display['goBoardBackground'] = 
 					$clean_atts['goboardbackground'];
+				 
+				if ( ( isset( $clean_atts['drawboardcoords'] ) ) &&
+				( FALSE != $clean_atts['drawboardcoords'] ) ) 
+				$display['drawBoardCoords'] = TRUE;
+
+				if ( ( isset( $clean_atts['disablezoomformobile'] ) ) &&
+				( FALSE != $clean_atts['disablezoomformobile'] ) ) 
+				$display['disableZoomForMobile'] = TRUE;
 				
 				// if we have any display properties then save them
 				if ( isset( $display ) ) $properties['display'] = $display;
