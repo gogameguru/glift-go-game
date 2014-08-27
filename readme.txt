@@ -59,7 +59,7 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 == Changelog ==
 
 = 0.3.3 =
-* Feature - Upgrade to Glift 0.17.1 -- Adds support for go board coordinate
+* Feature - Upgrade to Glift 0.17.2 -- Adds support for go board coordinate
   labels, zoom disabling for mobile, changes slightly how problems are
   calculated, removes dependency on jQuery.
 * Feature - Added plugin support for new board coordinates (default on) and zoom disable options
