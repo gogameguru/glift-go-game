@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 3.9.1
-Stable tag: 0.3.3
+Stable tag: 0.3.4
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -57,6 +57,10 @@ Yes, if you previously used EidoGo for WordPress, you have two options:
 Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more information and sample code.
 
 == Changelog ==
+
+= 0.3.4 =
+* Fix - Upgrade to Glift 0.17.3 -- Fixes iOS delay for icon bar events and
+  makes the disableZoomForMobile work.
 
 = 0.3.3 =
 * Feature - Upgrade to Glift 0.17.2 -- Adds support for go board coordinate
