@@ -93,5 +93,5 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Upgrade Notice ==
 
-= 0.3.3 =
-Glift now displays coordinates by default and has options for disabling zoom for mobile browsers.
+= 0.3.4 =
+Glift now displays coordinates by default, has options for disabling zoom for mobile browsers, has improved navigation and no longer depends on jQuery.
