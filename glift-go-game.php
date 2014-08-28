@@ -38,7 +38,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit();
 }
 
-define( 'GLIFT_JS_VERSION', '0.17.3' ); // change this number on js upgrade
+define( 'GLIFT_JS_VERSION', '0.17.5' ); // change this number on js upgrade
 
 // find and store the absolute plugin URL (this also returns current protocol)
 define( 'GLIFT_URL', plugins_url( '', __FILE__ ) );

@@ -59,8 +59,9 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 == Changelog ==
 
 = 0.3.4 =
-* Fix - Upgrade to Glift 0.17.3 -- Fixes iOS delay for icon bar events and
-  makes the disableZoomForMobile work.
+* Fix - Upgrade to Glift 0.17.5 -- Fixes iOS delay for icon bar events and
+  makes the disableZoomForMobile work. Add cap on jump-ahead/behind button.
+  Slightly improve the unsupported text.
 
 = 0.3.3 =
 * Feature - Upgrade to Glift 0.17.2 -- Adds support for go board coordinate
