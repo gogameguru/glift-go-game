@@ -58,6 +58,10 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Changelog ==
 
+= 0.3.5 =
+* Fix - Upgrade to Glift 0.17.6 -- Fixes spacing issues for comments with
+  newlines when displayed in the comment box.
+
 = 0.3.4 =
 * Fix - Upgrade to Glift 0.17.5 -- Fixes iOS delay for icon bar events and
   makes the disableZoomForMobile work. Add cap on jump-ahead/behind button.
