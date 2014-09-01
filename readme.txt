@@ -59,7 +59,7 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 == Changelog ==
 
 = 0.3.6 =
-* Fix - Upgrade to Glift 0.17.7 -- Makes the SGF parser more leniant to invalid
+* Fix - Upgrade to Glift 0.17.7 -- Makes the SGF parser more lenient to invalid
   SGF properties.
 
 = 0.3.5 =
