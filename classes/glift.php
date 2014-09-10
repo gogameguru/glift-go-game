@@ -159,7 +159,8 @@ class Glift {
 
 			// add a hyperlink to download the SGF if appropriate
 			if ( $download && TRUE != $this->noLink ) 
-			$html .= "<a href='$download'>$anchor</a>";
+			$html .= 	"<a type='application/x-go-sgf' ". 
+						"href='$download' download>$anchor</a>";
 
 			// close the <div> tag and add some white space
 			$html .= "</div>\n\r<p>&nbsp;</p>";
