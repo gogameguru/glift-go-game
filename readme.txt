@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 4.0.0
-Stable tag: 0.3.7
+Stable tag: 0.3.8
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -58,6 +58,10 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Changelog ==
 
+= 0.3.8 =
+* Fix - Upgrade to Glift 0.17.8 -- Makes the SGF parser more lenient to
+  trailing garbage data.
+
 = 0.3.7 =
 * Feature - Tested up to WordPress 4.0
 * Fix - Encourage browser download when clicking links, with SGF mimetype and HTML5 download attribute
@@ -105,5 +109,5 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Upgrade Notice ==
 
-= 0.3.7 =
-Glift now encourages browsers to download SGF whiles when links are clicked, rather than displaying them, and has been tested up to WordPress 4.0
+= 0.3.8 =
+Glift's parser is more lenient to SGFs with invalid data.
