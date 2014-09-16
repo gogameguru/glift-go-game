@@ -58,6 +58,14 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Changelog ==
 
+= 0.4.0 =
+* Feature - Glift upgraded to 0.18.1
+* Fix - Escaping for right brackets fixed
+* Fix - Resizing keeps state for game viewer types
+* Fix - User is automatically scrolled to the top for fullscreen. When closed, 
+        the user is scrolled back.
+* Fix - Increase z-index of the fullscreen div to ensure on top
+
 = 0.3.9 =
 * Feature - Status bar with current move number
 * Feature - Full screen button!
@@ -113,5 +121,5 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Upgrade Notice ==
 
-= 0.3.9 =
+= 0.4.0 =
 Glift now shows move numbers and allows the reader to view games in full screen mode.
