@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 4.0.0
-Stable tag: 0.3.9
+Stable tag: 0.4.0
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
