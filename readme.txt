@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 4.0.0
-Stable tag: 0.3.8
+Stable tag: 0.3.9
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -58,6 +58,10 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Changelog ==
 
+= 0.3.9 =
+* Feature - Status bar with current move number
+* Feature - Full screen button!
+
 = 0.3.8 =
 * Fix - Upgrade to Glift 0.17.8 -- Makes the SGF parser more lenient to
   trailing garbage data.
@@ -109,5 +113,5 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Upgrade Notice ==
 
-= 0.3.8 =
-Glift's parser is more lenient to SGFs with invalid data.
+= 0.3.9 =
+Glift now shows move numbers and allows the reader to view games in full screen mode.
