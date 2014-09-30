@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 4.0.0
-Stable tag: 0.4.1
+Stable tag: 0.4.2
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -57,6 +57,12 @@ Yes, if you previously used EidoGo for WordPress, you have two options:
 Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more information and sample code.
 
 == Changelog ==
+
+= 0.4.2 =
+* Feature - Glift upgraded to 0.19.0.
+* Feature - Glift now has a game info icon.
+* Feature - Changed roadmap icon to question mark icon.
+* Bug - Fixed bug where Glift comment box wasn't flush with the board.
 
 = 0.4.1 =
 * Feature - Glift upgraded to 0.18.2
@@ -127,6 +133,6 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Upgrade Notice ==
 
-= 0.4.1 =
-Glift plays through incorrect problem variations. Also, Glift has a page-icon 
-for multi-panel widgets.
+= 0.4.2 =
+Glift upgraded to 0.19.0. Added a game info icon. For showing problem
+solutions, the roadmap icon was changed to a question mark icon.
