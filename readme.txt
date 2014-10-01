@@ -60,7 +60,7 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 = 0.4.3 =
 * Feature - Glift upgraded to 0.19.1.
-* Fix - Fixed issue where comment box was not being styled.
+* Fix - Fixed issue where game info panel was not being styled.
 * Fix - Added rank, round, event to game info.
 * Fix - All problems start at move 0, via tree rebasing.
 
@@ -140,5 +140,5 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 == Upgrade Notice ==
 
 = 0.4.3 =
-Glift upgraded to 0.19.1. Fixes comment box styling issues.
+Glift upgraded to 0.19.1. Fixes game info styling issues.
 Adds round, rank, and event to game info.
