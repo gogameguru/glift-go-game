@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 4.0.0
-Stable tag: 0.4.3
+Stable tag: 0.5.0
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -57,6 +57,12 @@ Yes, if you previously used EidoGo for WordPress, you have two options:
 Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more information and sample code.
 
 == Changelog ==
+
+= 0.5.0 =
+* Feature - Glift upgraded to 1.0.0
+* Feature - Problems are loaded in the background.
+* Feature - Captured stones are displayed in game info.
+* Fix - Fix game info styling issue.
 
 = 0.4.3 =
 * Feature - Glift upgraded to 0.19.1.
@@ -139,6 +145,5 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Upgrade Notice ==
 
-= 0.4.3 =
-Glift upgraded to 0.19.1. Fixes game info styling issues.
-Adds round, rank, and event to game info.
+= 0.5.0 =
+Glift upgraded to 1.0.0. Improves game info and fixes minor styling issues.
