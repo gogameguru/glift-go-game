@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 4.0.0
-Stable tag: 0.5.1
+Stable tag: 0.5.2
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -57,6 +57,16 @@ Yes, if you previously used EidoGo for WordPress, you have two options:
 Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more information and sample code.
 
 == Changelog ==
+
+= 0.5.2 =
+* Feature - Glift upgraded to 1.0.2
+* Feature - Add keybindings to the game-viewer
+     , . => go to previous/next move
+     [ ] => toggle selected variation
+     < > => jump ahead / jump behind
+* Feature - Add support for next-move-paths in examples.
+* Fix - Rewrite large sections of the flattener code in preperation for the
+     upcoming UI rewrite.
 
 = 0.5.1 =
 * Feature - Glift upgraded to 1.0.1
@@ -150,5 +160,5 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Upgrade Notice ==
 
-= 0.5.1 =
-Glift upgraded to 1.0.1. Fixes bracket escaping and long properties.
+= 0.5.2 =
+Glift upgraded to 1.0.2. Rewrite the flattener code, and add keybindings to game-viewer.
