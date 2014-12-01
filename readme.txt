@@ -4,7 +4,7 @@ Donate link: http://gogameguru.com/donate/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 4.0.0
-Stable tag: 0.5.2
+Stable tag: 0.5.3
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -58,6 +58,13 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Changelog ==
 
+= 0.5.3 =
+* Feature - Glift upgraded to 1.0.3
+* Feature - Add support for Tygem .gib files with the parseType option.
+* Feature - Add 'escape' key to the game info window.
+* Feature - Add convenience options for disabling UI components.
+* Fix - Fix issue where Glift was capturing (and not releasing) key events.
+
 = 0.5.2 =
 * Feature - Glift upgraded to 1.0.2
 * Feature - Add keybindings to the game-viewer
@@ -65,7 +72,7 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
      [ ] => toggle selected variation
      < > => jump ahead / jump behind
 * Feature - Add support for next-move-paths in examples.
-* Fix - Rewrite large sections of the flattener code in preperation for the
+* Fix - Rewrite of large sections of the flattener code in preperation for the
      upcoming UI rewrite.
 
 = 0.5.1 =
@@ -160,5 +167,5 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Upgrade Notice ==
 
-= 0.5.2 =
-Glift upgraded to 1.0.2. Rewrite the flattener code, and add keybindings to game-viewer.
+= 0.5.3 =
+Glift upgraded to 1.0.3. Add Tygem .gib support and fix keybinding issues.
