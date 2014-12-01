@@ -1,6 +1,6 @@
 === Glift Go Game ===
 Contributors: gogameguru
-Donate link: http://gogameguru.com/donate/
+Donate link: https://gogameguru.com/support/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 4.0.0
@@ -16,7 +16,7 @@ Glift is a JavaScript client for the board game Go, which you can use to display
 
 After installing the Glift plugin, you can display game records and other Go content in your posts and pages by uploading them to the media library and using the Glift shortcode in your posts.
 
-For example: [glift sgf="http://gogameguru.com/i/glift/example.sgf"]
+For example: [glift sgf="https://gogameguru.com/.com/i/glift/example.sgf"]
 
 == Installation ==
 
@@ -38,11 +38,11 @@ Congratulations, the Glift plugin is now installed.
 
 = How do you I display a Go game in one of my posts? =
 
-You can embed an SGF file which you've uploaded to the WordPress media library by adding a shortcode like [glift sgf="http://gogameguru.com/i/glift/example.sgf"] in one of your posts. Replace http://gogameguru.com/i/glift/example.sgf with a link to an SGF file which you've uploaded to your own website.
+You can embed an SGF file which you've uploaded to the WordPress media library by adding a shortcode like [glift sgf="https://gogameguru.com/.com/i/glift/example.sgf"] in one of your posts. Replace https://gogameguru.com/.com/i/glift/example.sgf with a link to an SGF file which you've uploaded to your own website.
 
 = Are there more advanced features and options for Glift? =
 
-Yes, visit our [Glift page](http://gogameguru.com/glift/ "Glift Go Game WordPress Plugin") for more advanced examples.
+Yes, visit our [Glift page](https://gogameguru.com/.com/glift/ "Glift Go Game WordPress Plugin") for more advanced examples.
 
 = Is this plugin backwards compatible with the EidoGo for WordPress plugin? =
 
