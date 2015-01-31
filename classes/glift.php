@@ -8,18 +8,20 @@
 class Glift {
 
 	protected $divId;
+	protected $height;
+	protected $width;
 	protected $sgf;
 	protected $sgfCollection;
-	protected $noLink;
-	protected $noDefaults;
 	protected $allowWrapAround;
 	protected $sgfDefaults;
 	protected $display;
+	protected $nolink;
+	protected $noDefaults;
 	/* ADD ANY NEW GLIFT PROPERTIES HERE (and in glift_eat_shortcode below)*/
 
 	public function __construct( $properties = array( 'sgf' => NULL ) ) {
 
-		static $id = 1; // keep track of unique div id 
+		static $id = 1; // keep track of unique div id within this function
 		if ( is_int( $id ) ) $this->divId = ( "glift_display$id" );
 		$id++;
 		
@@ -70,19 +72,26 @@ class Glift {
 			$this->$key = $properties[$key];
 		}
 
-		// add default options if no value was specified and not disabled
+		/* now add default options if they haven't already been specified */
+		
+		// we need height and width even if defaults are disabled
+		if ( !isset( $this->height ) )
+		$this->height = GLIFT_HEIGHT;
+		if ( !isset( $this->width ) )
+		$this->width = GLIFT_WIDTH;
+
+		// continue with these default options too, if they're not disabled
 		if ( TRUE != $this->noDefaults ) {
 
-			if ( defined( 'GLIFT_THEME' ) && !isset( $this->display['theme'] ) )
+			if ( !isset( $this->display['theme'] ) )
 			$this->display['theme'] = GLIFT_THEME;
 
-			if ( defined( 'GO_BOARD_BACKGROUND' ) && 
-			!isset( $this->display['goBoardBackground'] ) )
-			$this->display['goBoardBackground'] = GO_BOARD_BACKGROUND;
+			if ( !isset( $this->display['goBoardBackground'] ) )
+			$this->display['goBoardBackground'] = GLIFT_BACKGROUND;
 			
 			// show coordinates by default, because WP usually has comments
 			if ( !isset( $this->display['drawBoardCoords'] ) ) {
-				if ( defined( 'GLIFT_COORDS' ) && FALSE == GLIFT_COORDS ) {
+				if ( FALSE == GLIFT_COORDS ) {
 					// do nothing
 				} else {
 					$this->display['drawBoardCoords'] = TRUE;
@@ -91,11 +100,13 @@ class Glift {
 
 			// don't change zoom by default because auto-disable is overplay
 			if ( !isset( $this->display['disableZoomForMobile'] ) ) {
-				if ( defined( 'GLIFT_DISABLE_ZOOM' ) && 
-				TRUE == GLIFT_DISABLE_ZOOM ) {
+				if ( TRUE == GLIFT_DISABLE_ZOOM ) {
 					$this->display['disableZoomForMobile'] = TRUE;
 				} 
 			}
+
+			if ( !isset( $this->nolink ) )
+			$this->nolink = GLIFT_NOLINK;
 		}
 	}
 
@@ -121,7 +132,12 @@ class Glift {
 		$glift_data = get_object_vars( $this );
 
 		// remove properties that are only used internally (by this plugin)
-		unset( $glift_data['noLink'], $glift_data['noDefaults'] );
+		unset( 
+			$glift_data['height'], 
+			$glift_data['width'], 
+			$glift_data['nolink'], 
+			$glift_data['noDefaults'] 
+		);
 
 		// escape all array elements for output and drop any null properties
 		$glift_data = glift_mega_map( 'glift_escape', $glift_data, array() );
@@ -134,21 +150,25 @@ class Glift {
 
 	// JSON encodes Glift object and returns it as HTML for glift.js
 	public function get_html() {
-		#TODO(dormerod): move div style info to somewhere more reusable
+		
+		global $glift_default_options;
 
 		$divId = esc_attr( $this->divId );
 		
+		// get the div height and width
+		$height = absint( $this->height ) . 'px'; //cast height as integer > 0
+		$width = ( '100%' == $this->width || 0 == $this->width )
+		? '100%' : absint( $this->width ) . 'px';
+			
 		$download = glift_is_url( $this->sgf ) ? esc_url( $this->sgf ) : FALSE;
 		
 		$json = $this->get_json();
 		
-		$style = "height:500px; width:100%; position:relative;";
+		$style = "height:$height; width:$width; position:relative;";
 		
-		$noscript = defined( 'GLIFT_NOSCRIPT' ) ? GLIFT_NOSCRIPT :
-		'Please enable JavaScript to view this game.';
+		$noscript = GLIFT_NOSCRIPT; // can contain HTML, we already sanitized
 		
-		$anchor = defined( 'GLIFT_ANCHOR_TEXT' ) ? 
-		GLIFT_ANCHOR_TEXT : 'Download SGF';
+		$anchor = esc_attr( GLIFT_ANCHOR_TEXT );
 		
 		// create the HTML snippet to load Glift
 		$html =	
@@ -158,9 +178,8 @@ class Glift {
 			"<div align ='center'><noscript>$noscript</noscript> ";
 
 			// add a hyperlink to download the SGF if appropriate
-			if ( $download && TRUE != $this->noLink ) 
-			$html .= 	"<a type='application/x-go-sgf' ". 
-						"href='$download' download>$anchor</a>";
+			if ( $download && TRUE != $this->nolink ) 
+			$html .= 	"<a href='$download' download>$anchor</a>";
 
 			// close the <div> tag and add some white space
 			$html .= "</div>\n\r<p>&nbsp;</p>";
@@ -200,14 +219,11 @@ class Glift {
 		
 				// explicitly grab any remaining shortcode attributes
 				
-				/* noLink * - this property is only used by this plugin */
-				$properties['noLink'] = ( ( isset( $clean_atts['nolink'] ) ) &&
-				( FALSE != $clean_atts['nolink'] ) ) ? TRUE : FALSE; 
-
-				/* noDefaults * - this property is only used by this plugin */
-				$properties['noDefaults'] = 
-				( ( isset( $clean_atts['nodefaults'] ) ) &&
-				( FALSE != $clean_atts['nodefaults'] ) ) ? TRUE : FALSE; 
+				/* height and width for glift_display div*/
+				if ( isset( $clean_atts['height'] ) )
+				$properties['height'] = $clean_atts['height'];
+				if ( isset( $clean_atts['width'] ) )
+				$properties['width'] = $clean_atts['width'];
 
 				/* allowWraparound */
 				if ( ( isset( $clean_atts['allowwraparound'] ) ) &&
@@ -216,14 +232,15 @@ class Glift {
 				
 				/* sgfDefaults */
 				if ( isset( $clean_atts['widgettype'] ) )
-				$sgfDefaults['widgetType'] = $clean_atts['widgettype'];
+				$sgfDefaults['widgetType'] = 
+				strtoupper( $clean_atts['widgettype'] ); // change to upper case
 				
 				if ( isset( $sgfDefaults ) ) 
 				$properties['sgfDefaults'] = $sgfDefaults;
 
 				/* display */ 
 				if ( isset( $clean_atts['theme'] ) ) 
-				$display['theme'] = $clean_atts['theme'];
+				$display['theme'] = strtoupper( $clean_atts['theme'] ); // upper
 				
 				if ( isset( $clean_atts['goboardbackground'] ) ) 
 					$display['goBoardBackground'] = 
@@ -239,6 +256,16 @@ class Glift {
 				
 				// if we have any display properties then save them
 				if ( isset( $display ) ) $properties['display'] = $display;
+
+				/* nolink * - this property is only used by this plugin */
+				if ( ( isset( $clean_atts['nolink'] ) ) &&
+				( FALSE != $clean_atts['nolink'] ) ) 
+				$properties['nolink'] = TRUE;
+
+				/* noDefaults * - this property is only used by this plugin */
+				$properties['noDefaults'] = 
+				( ( isset( $clean_atts['nodefaults'] ) ) &&
+				( FALSE != $clean_atts['nodefaults'] ) ) ? TRUE : FALSE; 
 
 				/* ADD ANY NEW GLIFT PROPERTIES HERE */
 				/* Note: shortcode $atts are always returned in lower case*/

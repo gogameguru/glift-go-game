@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Glift Go Game
-Version: 0.5.3
+Version: 0.6.0
 Plugin URI: https://gogameguru.com/glift/
 Description: Bring the board game Go (围棋 weiqi, 囲碁 igo or 바둑 baduk) to your WordPress site. Integrates the Glift JavaScript Go library with WordPress.
 Author: Go Game Guru
@@ -10,7 +10,7 @@ Author URI: https://gogameguru.com/
 License: MIT (X11)
 
 Glift Go Game WordPress Plugin
-Copyright (c) 2014 Go Game Guru
+Copyright (c) 2014, 2015 Go Game Guru
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,32 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit();
 }
 
+/* setup important variables and constants all in one place */
+
 define( 'GLIFT_JS_VERSION', '1.0.3' ); // change this number on js upgrade
+
+// specify available themes (used for settings dropdown and validation)
+$glift_themes = array( 
+	'COLORFUL', 
+	'DEFAULT', 
+	'DEPTH', 
+	'MOODY', 
+	'TEXTBOOK', 
+	'TRANSPARENT'
+);
+
+// hardcoded default options - don't hack these, use your settings menu instead
+$glift_default_options = array( 
+	'height' => '500', // set the default glift div height
+	'width' => '0', // set the default glift div width (0 means 100% div width)
+	'theme' => 'DEFAULT', // set the default theme 
+	'background' => NULL, // no goBoardBackground by default 
+	'coords' => TRUE, // enable coordinates by default
+	'disable_zoom' => FALSE, // don't disable zoom by default
+	'noscript' => 'Please enable JavaScript to view this game.', //noscript text
+	'anchor_text' => 'Download SGF', // default anchor text for SGF download
+	'nolink' => FALSE // don't disable automatic SGF hyperlink by default
+);
 
 // find and store the absolute plugin URL (this also returns current protocol)
 define( 'GLIFT_URL', plugins_url( '', __FILE__ ) );
@@ -46,8 +71,4 @@ define( 'GLIFT_URL', plugins_url( '', __FILE__ ) );
 // find plugin files and load the plugin
 define( 'GLIFT_PATH', plugin_dir_path( __FILE__ ) );
 require( GLIFT_PATH.'includes/glift-main.php' );
-
-// load the config file, if there is one
-$glift_config = GLIFT_PATH.'glift-config.php';
-if ( file_exists( $glift_config ) ) include( $glift_config );
 
