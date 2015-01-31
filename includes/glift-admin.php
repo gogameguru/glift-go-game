@@ -36,7 +36,7 @@ function glift_options_page() {
 <?php do_settings_sections('glift'); ?>
 <input name="Submit" type="submit" value="Save Changes" class="button-primary"/>
 </form>
-<?php glift_cheatsheet() ?>
+<?php glift_cheatsheet(); ?>
 </div>
 	<?php
 }
