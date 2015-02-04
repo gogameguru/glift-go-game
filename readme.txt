@@ -18,6 +18,8 @@ After installing the Glift plugin, you can display game records and other Go con
 
 For example: [glift sgf="https://gogameguru.com/.com/i/glift/example.sgf"]
 
+Work on this plugin attempts to follow WordPress coding standards as much as possible: https://make.wordpress.org/core/handbook/coding-standards/php/
+
 == Installation ==
 
 1. Download the Glift WordPress plugin.
