@@ -36,7 +36,10 @@ function glift_comment_shortcode ( $atts, $content, $tag ) {
 	// we will ignore any attributes that are manually set for the shortcode
 	// it's expected commenters will later use a JavaScript tool to comment
 	
-	// create a new Glift object and sent the $content data to it
+	// if we're in the admin dashboard, display text instead of Glift
+	if ( is_admin() ) return '[go]' . $content . '[/go]';
+
+	// create a new Glift object and send the $content data to it
 	$diagram = new Glift();
 
 	// we expect $content to be SGF data, but eat_shortcode will sanitize it
