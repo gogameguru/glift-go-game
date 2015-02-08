@@ -39,16 +39,6 @@ function glift_comment_shortcode ( $atts, $content, $tag ) {
 	// if we're in the admin dashboard, display text instead of Glift
 	if ( is_admin() ) return '[go]' . $content . '[/go]';
 
-	// create a new Glift object and send the $content data to it
-	$diagram = new Glift();
-
-	// we expect $content to be SGF data, but eat_shortcode will sanitize it
-	if ( $diagram->eat_shortcode( FALSE, $content, FALSE ) ) {
-		$html = $diagram->get_html(); // our shortcode was good, so get the data
-	
-	} else {
-		return FALSE; // the shortcode was indigestible, so don't return HTML
-	}
-
-	return $html; // we ate the shortcode, return an HTML snippet to WordPress
+	// otherwise call glift_create and return any HTML (drop $atts, $tag)
+	return glift_create( FALSE, $content, FALSE ); 
 }
