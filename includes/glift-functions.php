@@ -104,10 +104,10 @@ function glift_mega_map( $callback, $array, $args ) {
 	// the logic is the same as above except we assign to $new directly
 	} else {
 		if ( !is_array( $args ) || empty( $args ) ) {
-        	if ( isset( $array ) ) { 
+			if ( isset( $array ) ) { 
 				$new = call_user_func( $callback, $array ); 
 			}
-		                                                                 
+																		 
 		} elseif ( isset( $array ) ) {
 			// prepend the current $array to $args and call function
 			$args =	array_unshift( $args, $array );

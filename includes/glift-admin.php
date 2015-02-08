@@ -8,7 +8,7 @@
  */
 
 /* add a menu for our options (settings) page in WordPress */
-add_action('admin_menu', 'glift_add_page');
+add_action( 'admin_menu', 'glift_add_page' );
 
 function glift_add_page() {
 
@@ -43,9 +43,9 @@ function glift_options_page() {
 
 
 /* register and define our settings on the options page we created above */
-add_action('admin_init', 'glift_admin_init');
+add_action( 'admin_init', 'glift_admin_init' );
 
-function glift_admin_init(){
+function glift_admin_init() {
 
 	global $glift_themes; // get our global array of supported Glift themes
 
@@ -103,7 +103,7 @@ function glift_admin_init(){
 		array( 
 			'name' => 'theme', 
 			'value' => GLIFT_THEME, 
-			'options' => $glift_themes  
+			'options' => $glift_themes 
 		)
 	);
 
@@ -292,7 +292,7 @@ function glift_options_feedback( $options ) {
 	$valid = glift_validate_options( $options ); 
 
 	// if our validation function amended something, let the user know
-	if ( $valid['height'] != $options['height']  ) {
+	if ( $valid['height'] != $options['height'] ) {
 
 		add_settings_error(
 			'height',
