@@ -67,6 +67,10 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 * Fix - Remove support for glift-config.php because WP deletes files on upgrade
 * Fix - Theme names and widget types no longer need to be typed in upper case
 
+= 0.5.4 =
+* Feature - Glift upgraded to 1.0.4
+* Fix - Add support for point rectangles as data in SGF properties.
+
 = 0.5.3 =
 * Feature - Glift upgraded to 1.0.3
 * Feature - Add support for Tygem .gib files with the parseType option.

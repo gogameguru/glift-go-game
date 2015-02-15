@@ -40,7 +40,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 /* setup important variables and constants all in one place */
 
-define( 'GLIFT_JS_VERSION', '1.0.3' ); // change this number on js upgrade
+define( 'GLIFT_JS_VERSION', '1.0.4' ); // change this number on js upgrade
 
 // specify available themes (used for settings dropdown and validation)
 $glift_themes = array( 
@@ -71,4 +71,3 @@ define( 'GLIFT_URL', plugins_url( '', __FILE__ ) );
 // find plugin files and load the plugin
 define( 'GLIFT_PATH', plugin_dir_path( __FILE__ ) );
 require( GLIFT_PATH.'includes/glift-main.php' );
-
