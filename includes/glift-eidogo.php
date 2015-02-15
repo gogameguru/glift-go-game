@@ -7,7 +7,7 @@
 add_shortcode( 'sgf', 'eidogo_do_shortcode' );
 
 // sanitize, explicitly validate and arrange shortcode data
-// this is a lightweight version of the Glift object's eat_shortcode method 
+// we will translate any attributes into Glift format, then call glift_create
 function eidogo_do_shortcode( $atts, $content, $tag ) {
 	
 	// did our shortcode send any data?
@@ -17,12 +17,12 @@ function eidogo_do_shortcode( $atts, $content, $tag ) {
 
 		// look for sgf data
 		if ( isset( $clean_atts['sgfurl'] ) ) {
-			$properties['sgf'] = $clean_atts['sgfurl'];
+			$glift_atts['sgf'] = $clean_atts['sgfurl'];
 			
 		// no sgfurl, so do we have $content?
 		} elseif ( $content ) {
 			$clean_content = sanitize_text_field( $content );
-			$properties['sgf'] = $clean_content;
+			$glift_atts['sgf'] = $clean_content;
 
 		} else {
 			// we don't have any data, so return false
@@ -32,14 +32,13 @@ function eidogo_do_shortcode( $atts, $content, $tag ) {
 		/* sgfDefaults */
 		if ( isset( $clean_atts['theme'] ) && 
 		'problem' == $clean_atts['theme'] ) 
-		$properties['sgfDefaults'] = 
-		array( 'widgetType' => 'STANDARD_PROBLEM' );
+		$glift_atts['widgetType'] = 'STANDARD_PROBLEM';
 		
 
 	// we didn't receive any shortcode atts, so let's look for content
 	} elseif ( $content ) {
 		$clean_content = sanitize_text_field( $content );
-		$properties['sgf'] = $clean_content;
+		$glift_atts['sgf'] = $clean_content;
 
 	} else {
 		// we don't have any data, so return false
@@ -47,8 +46,5 @@ function eidogo_do_shortcode( $atts, $content, $tag ) {
 	}
 
 	// we have some data, so create the Glift object and output as HTML
-	$glift = new Glift( $properties );
-	$html = $glift->get_html(); // our shortcode was good, so get the data
-
-	return $html;
+	return glift_create( $glift_atts, FALSE, FALSE ); // only pass $glift_atts
 }

@@ -5,6 +5,7 @@ require( 'glift-options.php' );
 require( GLIFT_PATH.'classes/glift.php' );
 include( 'glift-admin.php' );
 include( 'glift-shortcodes.php' );
+include( 'glift-comments.php' );
 // add [sgf] compatibility if EidoGo for WordPress plugin isn't installed
 if ( !function_exists( 'WpEidoGoPlugin' ) ) include( 'glift-eidogo.php' );
 

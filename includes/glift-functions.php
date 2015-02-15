@@ -119,3 +119,19 @@ function glift_mega_map( $callback, $array, $args ) {
 	return $new;
 }
 
+
+// create a Glift object from shortcode parameters and return Glift widget HTML
+function glift_create( $atts, $content, $tag ) {
+
+	// create new Glift object and populate it with shortcode data
+	$glift = new Glift();
+	
+	if ( $glift->eat_shortcode( $atts, $content, $tag ) ) {
+		$html = $glift->get_html(); // our shortcode was good, so get the data
+	
+	} else {
+		return FALSE; // the shortcode was indigestible, so don't return HTML
+	}
+
+	return $html; // we ate the shortcode, return an HTML snippet to WordPress
+}
