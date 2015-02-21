@@ -10,7 +10,7 @@
 class Sgf implements ArrayAccess {
 
 	private $container = []; // required to implement ArrayAccess above
-	
+
 	public $sgfString;
 	public $url;
 	public $initialPosition;
@@ -19,14 +19,14 @@ class Sgf implements ArrayAccess {
 	public $componentsToUse;
 	public $showVariations;
 
-	public function __construct( 
-		$sgfString, 
-		$url, 
-		$initialPosition, 
-		$widgetType, 
-		$icons, 
-		$componentsToUse, 
-		$showVariations 
+	public function __construct(
+		$sgfString,
+		$url,
+		$initialPosition,
+		$widgetType,
+		$icons,
+		$componentsToUse,
+		$showVariations
 	)
 	{
 
@@ -50,15 +50,15 @@ class Sgf implements ArrayAccess {
 			$this->container[$offset] = $value;
 		}
 	}
-	
+
 	public function offsetExists( $offset ) {
 		return isset( $this->container[$offset] );
 	}
-	
+
 	public function offsetUnset( $offset ) {
 		unset( $this->container[$offset] );
 	}
-	
+
 	public function offsetGet( $offset ) {
 		return isset( $this->container[$offset] ) ?
 		$this->container[$offset] : NULL;

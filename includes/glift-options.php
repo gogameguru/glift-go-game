@@ -14,10 +14,10 @@ $glift_options = get_option( 'glift_options' );
 
 // did we receive options from DB? If so then validate, otherwise set defaults
 if ( !( FALSE == $glift_options ) ) {
-	
+
 	// we received options, so validate them
 	$glift_valid_options = glift_validate_options( $glift_options );
-	
+
 	// now define our options as constants for later use
 	glift_define_options( $glift_valid_options );
 
@@ -41,7 +41,7 @@ function glift_validate_options( $options ) {
 		$height = preg_replace( '/[^0-9]/', '', $options['height'] );
 		$valid['height'] = is_numeric($height) ? $height : $defaults['height'];
 	}
-		
+
 	if ( isset( $options['width'] ) ) {
 		$width = preg_replace( '/[^0-9]/', '', $options['width'] );
 		$valid['width'] = is_numeric( $width ) ? $width : $defaults['width'];
@@ -49,7 +49,7 @@ function glift_validate_options( $options ) {
 
 	// validate the theme setting against the global list of themes
 	if ( isset( $options['theme'] ) ) {
-		$valid['theme'] = in_array( $options['theme'], $glift_themes ) 
+		$valid['theme'] = in_array( $options['theme'], $glift_themes )
 		? $options['theme'] : 'DEFAULT';
 	}
 
@@ -75,7 +75,7 @@ function glift_validate_options( $options ) {
 
 	// the noscript message can contain HTML etc, so we need to sanitize it
 	if ( isset( $options['noscript'] ) ) {
-		
+
 		$allowed = array(
 			'a' => array(
 				'href' => true,
@@ -87,16 +87,16 @@ function glift_validate_options( $options ) {
 			'p' => array(),
 			'strong' => array(),
 		); // array of allowed tags
-		
+
 		$noscript = wp_kses( $options['noscript'], $allowed ); // strip bad tags
-		$noscript = force_balance_tags( $noscript ); // balance remaining tags	
-		$valid['noscript'] = $noscript; 
+		$noscript = force_balance_tags( $noscript ); // balance remaining tags
+		$valid['noscript'] = $noscript;
 	}
 
 	// escape any unwanted HTML in the anchor text
 	if ( isset( $options['anchor_text'] ) ) {
 		$anchor_text = sanitize_text_field( $options['anchor_text'] );
-		$valid['anchor_text'] = $anchor_text; 
+		$valid['anchor_text'] = $anchor_text;
 	}
 
 	// the checkbox will return 1 if nolink is selected
@@ -121,7 +121,7 @@ $defaults = $glift_default_options;
 	foreach ( $defaults as $key => $value ) {
 		if ( !isset( $options[$key] ) ) $options[$key] = $defaults[$key];
 	}
-	
+
 	// now define our constants one by one...
 	define('GLIFT_HEIGHT', $options['height']);
 	define('GLIFT_WIDTH', $options['width']);
