@@ -4,7 +4,7 @@ Donate link: https://gogameguru.com/support/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
 Tested up to: 4.1.0
-Stable tag: 0.6.1
+Stable tag: 0.6.2
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -34,7 +34,7 @@ Work on this plugin attempts to follow WordPress coding standards as much as pos
 
 6. Finally, click ‘Activate’.
 
-Congratulations, the Glift plugin is now installed. 
+Congratulations, the Glift plugin is now installed.
 
 == Frequently Asked Questions ==
 
@@ -60,12 +60,15 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Changelog ==
 
+= 0.6.2 =
+* Fix - Fix bug in Eidogo shortcode backwards compatibility for go problems
+
 = 0.6.1 =
 * Feature - Add initial support for Go diagrams in WordPress comments
 
 = 0.6.0 =
 * Feature - Add native WordPress settings page (see 'Glift' under settings menu)
-* Feature - Add more options to customize Glift's default appearance 
+* Feature - Add more options to customize Glift's default appearance
 * Feature - Add new height and width parameters to [glift] shortcode
 * Fix - Remove support for glift-config.php because WP deletes files on upgrade
 * Fix - Theme names and widget types no longer need to be typed in upper case

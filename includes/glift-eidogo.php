@@ -32,7 +32,7 @@ function eidogo_do_shortcode( $atts, $content, $tag ) {
 		/* sgfDefaults */
 		if ( isset( $clean_atts['theme'] ) &&
 		'problem' == $clean_atts['theme'] )
-		$glift_atts['widgetType'] = 'STANDARD_PROBLEM';
+		$glift_atts['widgettype'] = 'STANDARD_PROBLEM';
 
 
 	// we didn't receive any shortcode atts, so let's look for content
