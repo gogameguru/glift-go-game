@@ -1,6 +1,4 @@
 .DS_STORE
 *.swp
 *.swo
-*~
 wp-config.php
-glift-config.php
