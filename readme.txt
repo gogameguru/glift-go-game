@@ -61,7 +61,7 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 == Changelog ==
 
 = 0.6.3 =
-* Feature - Ugrade Glift to 1.0.5
+* Feature - Upgrade Glift to 1.0.5
 * Feature - Glift: Change the move-number icon to be more readable.
 * Fix - Glift: Add better support for move rectangles.
 
