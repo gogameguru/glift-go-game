@@ -3,8 +3,8 @@ Contributors: gogameguru
 Donate link: https://gogameguru.com/support/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
-Tested up to: 4.1.0
-Stable tag: 0.6.3
+Tested up to: 4.3.0
+Stable tag: 0.6.4
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -59,6 +59,10 @@ Yes, if you previously used EidoGo for WordPress, you have two options:
 Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more information and sample code.
 
 == Changelog ==
+
+= 0.6.3 =
+* Feature - Upgrade Glift to 1.0.6
+* Feature - Tested up to WordPress 4.3.0
 
 = 0.6.3 =
 * Feature - Upgrade Glift to 1.0.5
