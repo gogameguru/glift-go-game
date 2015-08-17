@@ -60,7 +60,7 @@ Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more informatio
 
 == Changelog ==
 
-= 0.6.3 =
+= 0.6.4 =
 * Feature - Upgrade Glift to 1.0.6
 * Feature - Tested up to WordPress 4.3.0
 
