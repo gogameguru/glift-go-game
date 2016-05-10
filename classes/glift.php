@@ -235,6 +235,12 @@ class Glift {
 				$sgfDefaults['widgetType'] =
 				strtoupper( $clean_atts['widgettype'] ); // change to upper case
 
+				if ( isset( $clean_atts['initialposition'] ) )
+				$sgfDefaults['initialPosition'] = $clean_atts['initialposition'];
+
+				if ( isset( $clean_atts['nextmovespath'] ) )
+				$sgfDefaults['nextMovesPath'] = $clean_atts['nextmovespath'];
+
 				if ( isset( $sgfDefaults ) )
 				$properties['sgfDefaults'] = $sgfDefaults;
 

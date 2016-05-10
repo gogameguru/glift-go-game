@@ -3,8 +3,8 @@ Contributors: gogameguru
 Donate link: https://gogameguru.com/support/
 Tags: go game, board games, baduk, igo, weiqi, 围棋, 囲碁, 바둑, Cờ vây, chess
 Requires at least: 2.5
-Tested up to: 4.3.0
-Stable tag: 0.6.4
+Tested up to: 4.5.2
+Stable tag: 0.6.5
 License: MIT (X11)
 License URI: http://opensource.org/licenses/MIT
 
@@ -59,6 +59,13 @@ Yes, if you previously used EidoGo for WordPress, you have two options:
 Yes, visit [gliftgo.com](http://www.gliftgo.com/ "Glift Go") for more information and sample code.
 
 == Changelog ==
+
+= 0.6.5 =
+* Feature - Upgrade Glift to 1.1.1
+* Feature - Add Mousewheel support for game viewing
+* Feature - Add Ko support
+* Feature - Add Game Figure support (e.g. [glift ... widgetType="EXAMPLE" initialPosition="3" nextMovesPath="0:5"] displays the game to move 8, numbering 4-8.
+* Feature - Tested up to WordPress 4.5.2
 
 = 0.6.4 =
 * Feature - Upgrade Glift to 1.0.6
